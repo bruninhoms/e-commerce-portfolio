@@ -5,7 +5,6 @@ import CustomButton from '../custom-button/custom-button.component.jsx';
 import { addItem } from '../../redux/cart/cart.actions.js';
 
 import './collection-item.styles.scss';
-import { fromEventPattern } from 'rxjs';
 
 const CollectionItem = ({ item, addItem }) => {
     const { name, price, imageUrl } = item;
