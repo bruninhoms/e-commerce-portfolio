@@ -1,7 +1,9 @@
 import React from 'react';
+import { store } from 'react-notifications-component';
 
 import FormInput from '../form-input/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component.jsx';
+import personalizedNotification from '../notifications/notifications.component.jsx';
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js';
 
@@ -43,6 +45,16 @@ class SignUp extends React.Component{
                 password: '',
                 confirmPassword: ''
             });
+
+            store.addNotification({
+                content: personalizedNotification('Sucess !', 'User created', 'sucess'),
+                container: 'bottom-left',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 1000,
+                }
+              })
 
         }catch(error){
             console.log(error);

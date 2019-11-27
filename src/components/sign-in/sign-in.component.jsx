@@ -1,7 +1,9 @@
 import React from 'react';
+import { store } from 'react-notifications-component';
 
 import FormInput from '../form-input/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component.jsx';
+import personalizedNotification from '../notifications/notifications.component.jsx';
 
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js';
 
@@ -30,6 +32,15 @@ class SignIn extends React.Component{
         }
 
         this.setState({email: '', password: ''});
+        store.addNotification({
+            content: personalizedNotification('Sucess !', 'Log in sucessful', 'sucess'),
+            container: 'bottom-left',
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 1000,
+            }
+          })
     }
 
     handleChange = event => {
@@ -46,21 +57,21 @@ class SignIn extends React.Component{
 
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
-                    name="email" 
-                    type="email" 
-                    value={this.state.email} 
-                    handleChange={this.handleChange}
-                    label = "Email"
-                    required
+                        name="email" 
+                        type="email" 
+                        value={this.state.email} 
+                        handleChange={this.handleChange}
+                        label = "Email"
+                        required
                     />
 
                     <FormInput 
-                    name="password" 
-                    type="password" 
-                    value={this.state.password} 
-                    handleChange={this.handleChange}
-                    label = "Password"
-                    required
+                        name="password" 
+                        type="password" 
+                        value={this.state.password} 
+                        handleChange={this.handleChange}
+                        label = "Password"
+                        required
                     />
                     <div className='buttons'>
                         <CustomButton type="submit"> Sign in </CustomButton>

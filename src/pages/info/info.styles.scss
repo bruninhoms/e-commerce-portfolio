@@ -1,0 +1,23 @@
+.info-container {
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .logo {
+        height: 100px;
+        width: 100px;
+        align-self: center;
+    }
+    .text{
+        align-self: center;
+        
+        .little-text{
+            font-size: x-large;
+        }
+        collections{
+            font-size: xx-large;
+        }
+    }
+}
