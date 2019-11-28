@@ -1,8 +1,8 @@
 import React from 'react';
 import { store } from 'react-notifications-component';
+import { BufferLoginButton } from "react-social-login-buttons";
 
 import FormInput from '../form-input/form-input.component.jsx';
-import CustomButton from '../custom-button/custom-button.component.jsx';
 import personalizedNotification from '../notifications/notifications.component.jsx';
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js';
@@ -106,7 +106,7 @@ class SignUp extends React.Component{
                         label='Confirm Password'
                         required
                      />
-                     <CustomButton type='submit'>Sign Up</CustomButton>
+                     <BufferLoginButton type='submit' style={{fontFamily: 'Karla' }}>Sign Up with Email</BufferLoginButton>
                 </form>
             </div>
         )

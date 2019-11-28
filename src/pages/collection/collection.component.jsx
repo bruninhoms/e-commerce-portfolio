@@ -9,6 +9,8 @@ import './collection.styles.scss';
 
 const CollectionPage = ({ collection }) => {
     const { title, items } = collection;
+    window.scrollTo(0, 0);
+    
     return (
         <div className='collection-page'>
             <h2 className='title' >

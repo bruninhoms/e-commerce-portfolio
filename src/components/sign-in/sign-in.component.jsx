@@ -1,11 +1,13 @@
 import React from 'react';
 import { store } from 'react-notifications-component';
+import { FacebookLoginButton } from "react-social-login-buttons";
+import { GoogleLoginButton } from "react-social-login-buttons";
+import { BufferLoginButton  } from "react-social-login-buttons";
 
 import FormInput from '../form-input/form-input.component.jsx';
-import CustomButton from '../custom-button/custom-button.component.jsx';
 import personalizedNotification from '../notifications/notifications.component.jsx';
 
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js';
+import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase/firebase.utils.js';
 
 import './sign-in.styles.scss';
 
@@ -74,8 +76,9 @@ class SignIn extends React.Component{
                         required
                     />
                     <div className='buttons'>
-                        <CustomButton type="submit"> Sign in </CustomButton>
-                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn> Sign in with Google </CustomButton>
+                        <BufferLoginButton  type="submit" style={{fontFamily: 'Karla'}}> Sign in with Email </BufferLoginButton >
+                        <GoogleLoginButton onClick={signInWithGoogle} style={{fontFamily: 'Karla'}}> Sign in with Google </GoogleLoginButton>
+                        <FacebookLoginButton onClick={signInWithFacebook} style={{fontFamily: 'Karla' }}> Sign in with Facebook </FacebookLoginButton>
                     </div>
                     
                 </form>

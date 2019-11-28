@@ -1,5 +1,5 @@
 body {
-    font-family: 'Open Sans Condensed';
+    font-family: 'Karla', sans-serif;
     padding: 20px 60px;
 }
 
@@ -10,4 +10,5 @@ a {
 
 * {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
