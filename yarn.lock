@@ -8741,6 +8741,11 @@ react-app-polyfill@^1.0.4:
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
 
+react-blob@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-blob/-/react-blob-1.0.1.tgz#b0edc94377f78616d42c6a6662c259d0b37b1f2b"
+  integrity sha512-cdqe5XKmkZgHsRSK0zsNZ6CYAvPjaF9PYM1kp3y01ajwdpGI+p2knU3Kp5AXiWlqx6sLCwtAWjH9ltx4oEbE0Q==
+
 react-dev-utils@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.1.0.tgz#3ad2bb8848a32319d760d0a84c56c14bdaae5e81"

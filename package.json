@@ -6,6 +6,7 @@
     "firebase": "^7.4.0",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
+    "react-blob": "^1.0.1",
     "react-dom": "^16.11.0",
     "react-notification": "^6.8.5",
     "react-notifications-component": "^2.2.3",
