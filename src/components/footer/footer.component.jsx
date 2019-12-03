@@ -5,23 +5,23 @@ import FacebookIcon from '../../assets/facebook-icon.png';
 import WhatsAppIcon from '../../assets/whats-icon.png';
 
 
-import './footer.styles.scss';
+import { FooterContainer, SocialContainer } from './footer.styles.jsx';
 
 const Footer = () => (
-    <div className='footer-container'>
-        <div className='social-container'>
-            <img src={InstagramIcon} alt='InstagramLogo' className='logo-container'/>
-            <span className='social-text'>@Instagram Account</span>
-        </div>
-        <div className='social-container'>
-            <img src={FacebookIcon} alt='FacebookLogo' className='logo-container'/>
-            <span className='social-text'>@Facebook Account</span>
-        </div>
-        <div className='social-container'>
-            <img src={WhatsAppIcon} alt='WhatsAppLogo' className='logo-container'/>
-            <span className='social-text'>+55(99)9999-9999</span>
-        </div>
-    </div>
+    <FooterContainer>
+        <SocialContainer>
+            <img src={InstagramIcon} alt='InstagramLogo' />
+            <span>@Instagram Account</span>
+        </SocialContainer>
+        <SocialContainer>
+            <img src={FacebookIcon} alt='FacebookLogo' />
+            <span>@Facebook Account</span>
+        </SocialContainer>
+        <SocialContainer>
+            <img src={WhatsAppIcon} alt='WhatsAppLogo' />
+            <span>+55(99)9999-9999</span>
+        </SocialContainer>
+    </FooterContainer>
 );
 
 export default Footer;

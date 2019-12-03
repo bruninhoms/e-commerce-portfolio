@@ -5,27 +5,34 @@ import { store } from 'react-notifications-component';
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions.js';
 import personalizedNotification from '../notifications/notifications.component.jsx';
 
-import './checkout-item.styles.scss';
+import {
+    CheckoutItemContainer,
+    ImageContainer,
+    Quantity,
+    TextContainer,
+    RemoveButton
+} from './checkout-item.styles.jsx';
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-    const { name, price, quantity, imageUrl } = cartItem;
+    const { name, price, quantity, imageUrl, discount } = cartItem;
+    const priceDiscount = (100 - discount)/100 * price;
 
     return(
-    <div className='checkout-item'>
-        <div className='image-container'>
+    <CheckoutItemContainer>
+        <ImageContainer>
             <img src={imageUrl} alt='item' />
-        </div>
-        <span className='name'>{name}</span>
-        <span className='quantity'>
-            <div className='arrow' onClick={() => removeItem(cartItem)}>&#10094;</div>
-            <span className='value'>{quantity}</span>
-            <div className='arrow' onClick={() => addItem(cartItem)}>&#10095;</div>
-            </span>
-        <span className='price'>${price}</span>
-        <div className='remove-button' onClick={() => {
+        </ImageContainer>
+        <TextContainer>{name}</TextContainer>
+        <Quantity className='quantity'>
+            <div onClick={() => removeItem(cartItem)}>&#10094;</div>
+            <span>{quantity}</span>
+            <div onClick={() => addItem(cartItem)}>&#10095;</div>
+        </Quantity>
+        <TextContainer>${(priceDiscount).toFixed(0)}</TextContainer>
+        <RemoveButton onClick={() => {
             clearItem(cartItem);
             store.addNotification({
-                content: personalizedNotification('Removed !', 'Removed from cart ', 'clearFromCart'),
+                content: personalizedNotification('Removed !', 'Removed from cart ', 'error'),
                 container: 'bottom-left',
                 animationIn: ["animated", "fadeIn"],
                 animationOut: ["animated", "fadeOut"],
@@ -35,8 +42,8 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
               });
             }}>
                 &#10005;
-        </div>
-    </div>
+        </RemoveButton>
+    </CheckoutItemContainer>
 )};
 
 const mapDispatchToProps = dispatch => ({

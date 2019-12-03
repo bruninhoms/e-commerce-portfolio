@@ -9,7 +9,10 @@ import personalizedNotification from '../notifications/notifications.component.j
 
 import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase/firebase.utils.js';
 
-import './sign-in.styles.scss';
+import {
+    SignInContainer,
+    Buttons
+} from './sign-in.styles.jsx';
 
 class SignIn extends React.Component{
     constructor(props){
@@ -29,20 +32,29 @@ class SignIn extends React.Component{
         try{
             await auth.signInWithEmailAndPassword(email, password);
             this.setState({ email: '', password: ''});
+            store.addNotification({
+                content: personalizedNotification('Sucess !', 'Log in sucessful', 'sucess'),
+                container: 'bottom-left',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 1000,
+                }
+              })
         }catch(error){
             console.log(error);
+            store.addNotification({
+                content: personalizedNotification('Failed !', 'Check your credentials', 'error'),
+                container: 'bottom-left',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 1000,
+                }
+              })
         }
 
         this.setState({email: '', password: ''});
-        store.addNotification({
-            content: personalizedNotification('Sucess !', 'Log in sucessful', 'sucess'),
-            container: 'bottom-left',
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 1000,
-            }
-          })
     }
 
     handleChange = event => {
@@ -53,7 +65,7 @@ class SignIn extends React.Component{
 
     render() {
         return(
-            <div className='sign-in'>
+            <SignInContainer>
                 <h2>I already have an account</h2>
                 <span>Sign in with your e-mail and password</span>
 
@@ -75,14 +87,14 @@ class SignIn extends React.Component{
                         label = "Password"
                         required
                     />
-                    <div className='buttons'>
+                    <Buttons>
                         <BufferLoginButton  type="submit" style={{fontFamily: 'Karla'}}> Sign in with Email </BufferLoginButton >
                         <GoogleLoginButton onClick={signInWithGoogle} style={{fontFamily: 'Karla'}}> Sign in with Google </GoogleLoginButton>
                         <FacebookLoginButton onClick={signInWithFacebook} style={{fontFamily: 'Karla' }}> Sign in with Facebook </FacebookLoginButton>
-                    </div>
+                    </Buttons>
                     
                 </form>
-            </div>
+            </SignInContainer>
         )
     }
 }

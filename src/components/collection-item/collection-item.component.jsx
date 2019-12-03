@@ -2,32 +2,47 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { store } from 'react-notifications-component';
 
-import CustomButton from '../custom-button/custom-button.component.jsx';
 import personalizedNotification from '../notifications/notifications.component.jsx';
 import DiscountTag from '../discount-tag/discount-tag.component.jsx';
+import { 
+    CollectionItemDiv, 
+    BackgroundImage, 
+    AddButton, 
+    CollectionFooterContainer,
+    Name,
+    Price,
+    NameDiscount,
+    PriceDiscount,
+    PriceDiscountStrike
+} from './collection-item.styles.jsx';
 
 import { addItem } from '../../redux/cart/cart.actions.js';
-
-import './collection-item.styles.scss';
 
 
 const CollectionItem = ({ item, addItem }) => {
     const { name, price, imageUrl, discount } = item;
-    
+    const priceDiscount = price * (1 - (discount/100));
+
     return (
-        <div className='collection-item'>
-            <div
+        <CollectionItemDiv>
+            <BackgroundImage
                 className ='image'
                 style={{
                     backgroundImage: `url(${imageUrl})`
                 }}
             />
             {discount > 0 ? (<DiscountTag value={discount} /> ): null}
-            <div className ='collection-footer'>
-            <span className='name'>{ name }</span>
-            <span className='price'>${ price }</span>
-            </div>
-            <CustomButton 
+            <CollectionFooterContainer>
+                {discount > 0 ?  <NameDiscount>{ name }</NameDiscount> : <Name>{ name }</Name>}
+                {discount > 0 ? <div>
+                                <PriceDiscountStrike>${ price }</PriceDiscountStrike>
+                                <PriceDiscount>${(priceDiscount).toFixed(0)}</PriceDiscount> 
+                                </div> 
+                                : 
+                                <Price>${ price }</Price> 
+                }
+            </CollectionFooterContainer>
+            <AddButton 
                 onClick={() => 
                     {
                         addItem(item);
@@ -42,10 +57,10 @@ const CollectionItem = ({ item, addItem }) => {
                           })
                     }
                 } 
-                inverted>
-                    ADD TO CART 
-            </CustomButton>
-        </div>
+            inverted>
+                ADD TO CART 
+            </AddButton>
+        </CollectionItemDiv>
     )};
 
 const mapDispatchToProps = dispatch => ({

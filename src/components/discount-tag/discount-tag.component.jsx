@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './discount-tag.styles.scss';
+import {Circle, DiscountText} from './discount-tag.styles.jsx';
 
 const DiscountTag = ({value}) => (
-    <div  className='circle'>
-        <div className='discount-style'>{value}%</div>
-    </div>
+    <Circle>
+        <DiscountText>{value}%</DiscountText>
+    </Circle>
 );
 
 export default DiscountTag;

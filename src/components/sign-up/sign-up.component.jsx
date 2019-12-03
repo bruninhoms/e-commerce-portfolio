@@ -7,7 +7,10 @@ import personalizedNotification from '../notifications/notifications.component.j
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js';
 
-import './sign-up.styles.scss';
+import {
+    SignUpContainer,
+    Title
+} from './sign-up.styles.jsx';
 
 class SignUp extends React.Component{
     constructor(){
@@ -58,6 +61,15 @@ class SignUp extends React.Component{
 
         }catch(error){
             console.log(error);
+            store.addNotification({
+                content: personalizedNotification('Failed !', 'ERROR', 'error'),
+                container: 'bottom-left',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 1000,
+                }
+              })
         }
     }
 
@@ -70,10 +82,10 @@ class SignUp extends React.Component{
     render () {
         const { displayName, email, password, confirmPassword } = this.state;
         return(
-            <div className='sign-up'>
-                <h2 className='title'>I do not have an account</h2>
+            <SignUpContainer>
+                <Title>I do not have an account</Title>
                 <span>Sign up with your e-mail and password</span>
-                <form className='sign-up-form' onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <FormInput
                         type='text'
                         name='displayName'
@@ -108,7 +120,7 @@ class SignUp extends React.Component{
                      />
                      <BufferLoginButton type='submit' style={{fontFamily: 'Karla' }}>Sign Up with Email</BufferLoginButton>
                 </form>
-            </div>
+            </SignUpContainer>
         )
     }
 }
