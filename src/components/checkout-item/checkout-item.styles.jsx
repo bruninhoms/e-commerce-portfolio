@@ -30,14 +30,32 @@ export const Quantity = styled(TextContainer)`
 
     span {
         margin: 0 10px;
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+         -khtml-user-select: none; 
+           -moz-user-select: none; 
+            -ms-user-select: none; 
+                user-select: none; 
     }
 
     div {
         cursor: pointer;
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+         -khtml-user-select: none; 
+           -moz-user-select: none; 
+            -ms-user-select: none; 
+                user-select: none; 
     }
 `;
 
 export const RemoveButton = styled.div`
     padding-left: 12px;
     cursor: pointer;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
 `;

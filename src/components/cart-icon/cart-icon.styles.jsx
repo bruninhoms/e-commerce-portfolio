@@ -22,4 +22,10 @@ export const ItemCount = styled.span`
     font-size: 10px;
     font-weight: bold;
     bottom: 12px;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
 `;

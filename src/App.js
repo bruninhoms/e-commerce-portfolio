@@ -55,10 +55,10 @@ class App extends React.Component {
         <ReactNotification />
         <Header />
           <Switch>
-            <Route exact path='/' component={HomePage} onUpdate={() => window.scrollTo(0, 0)} />
-            <Route path='/shop' component={ShopPage} onUpdate={() => window.scrollTo(0, 0)} />
+            <Route exact path='/' component={HomePage} />
+            <Route path='/shop' component={ShopPage} />
             <Route exact path='/info' component={InfoPage} />
-            <Route exact path='/checkout' component={CheckoutPage} onUpdate={() => window.scrollTo(0, 0)} />
+            <Route exact path='/checkout' component={CheckoutPage} />
             <Route 
             exact 
             path='/signin' 

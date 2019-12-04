@@ -9,12 +9,12 @@ import './collection.styles.scss';
 
 const CollectionPage = ({ collection }) => {
     const { title, items } = collection;
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
     
     return (
         <div className='collection-page'>
             <h2 className='title' >
-            {title.toUpperCase()}
+                {title.toUpperCase()}
             </h2>
             <div className='items'>
                 {
