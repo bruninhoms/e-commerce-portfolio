@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { FacebookLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
@@ -13,68 +13,56 @@ import {
     Buttons
 } from './sign-in.styles.jsx';
 
-class SignIn extends React.Component{
-    constructor(props){
-        super(props);
+const SignIn = ({ emailSignInStart, googleSignInStart, facebookSignInStart }) => {
+    const [userCredentials, setCredentials] = useState({email: '', password: ''});
+    const { email, password } = userCredentials;
 
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
 
-    handleSubmit = async event => {
+    const handleSubmit = async event => {
         event.preventDefault();
-        const { emailSignInStart } = this.props;
-        const { email, password } = this.state;
 
         emailSignInStart(email, password);
-    }
+    };
     
 
-    handleChange = event => {
+    const handleChange = event => {
         const { value, name } = event.target;
 
-        this.setState({ [name]: value });
-    }
+        setCredentials({...userCredentials, [name]: value });
+    };
+    return(
+        <SignInContainer>
+            <h2>I already have an account</h2>
+            <span>Sign in with your e-mail and password</span>
 
-    render() {
-        const { googleSignInStart, facebookSignInStart } = this.props;
-        return(
-            <SignInContainer>
-                <h2>I already have an account</h2>
-                <span>Sign in with your e-mail and password</span>
+            <form onSubmit={handleSubmit}>
+                <FormInput 
+                    name="email" 
+                    type="email" 
+                    value={email} 
+                    handleChange={handleChange}
+                    label = "Email"
+                    required
+                />
 
-                <form onSubmit={this.handleSubmit}>
-                    <FormInput 
-                        name="email" 
-                        type="email" 
-                        value={this.state.email} 
-                        handleChange={this.handleChange}
-                        label = "Email"
-                        required
-                    />
-
-                    <FormInput 
-                        name="password" 
-                        type="password" 
-                        value={this.state.password} 
-                        handleChange={this.handleChange}
-                        label = "Password"
-                        required
-                    />
-                    <Buttons>
-                        <BufferLoginButton style={{fontFamily: 'Karla'}}> Sign in with Email </BufferLoginButton >
-                        <GoogleLoginButton type='button' onClick={googleSignInStart} style={{fontFamily: 'Karla'}}> Sign in with Google </GoogleLoginButton>
-                        <FacebookLoginButton type='button' onClick={facebookSignInStart} style={{fontFamily: 'Karla' }}> Sign in with Facebook </FacebookLoginButton>
-                    </Buttons>
-                    
-                </form>
-            </SignInContainer>
-        )
-    }
+                <FormInput 
+                    name="password" 
+                    type="password" 
+                    value={password} 
+                    handleChange={handleChange}
+                    label = "Password"
+                    required
+                />
+                <Buttons>
+                    <BufferLoginButton style={{fontFamily: 'Karla'}}> Sign in with Email </BufferLoginButton >
+                    <GoogleLoginButton type='button' onClick={googleSignInStart} style={{fontFamily: 'Karla'}}> Sign in with Google </GoogleLoginButton>
+                    <FacebookLoginButton type='button' onClick={facebookSignInStart} style={{fontFamily: 'Karla' }}> Sign in with Facebook </FacebookLoginButton>
+                </Buttons>
+                
+            </form>
+        </SignInContainer>
+    )
 }
-
 const mapDispatchToProps = dispatch => ({
     googleSignInStart: () => dispatch(googleSignInStart()),
     facebookSignInStart: () => dispatch(facebookSignInStart()),
