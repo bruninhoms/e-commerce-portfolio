@@ -45,7 +45,7 @@ export function* getSnapshotFromUserAuth(userAuth) {
     }
 }
 
-export function* getSnapshotFromUserSignUp(userAuth, displayName) {
+export function* getSnapshotFromUserSignUpAndSignIn(userAuth, displayName) {
     try{   
         const userRef = yield call(createUserProfileDocument, userAuth, {displayName});
         const userSnapshot = yield userRef.get();
@@ -159,7 +159,7 @@ export function* signOut() {
 export function* signUp({ payload: { email, password, displayName } }) {
     try{
         const {user} = yield auth.createUserWithEmailAndPassword(email, password);
-        yield getSnapshotFromUserSignUp(user, displayName);
+        yield getSnapshotFromUserSignUpAndSignIn(user, displayName);
     }catch(error){
         yield put(signUpFailure(error));
         yield store.addNotification({

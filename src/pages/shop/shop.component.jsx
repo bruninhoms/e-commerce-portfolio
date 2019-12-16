@@ -11,11 +11,11 @@ class ShopPage extends React.Component {
     componentDidMount() {
         const { fetchCollectionsStart } = this.props;
         fetchCollectionsStart();
+        window.scrollTo(0,0);
     }
 
     render() {
         const { match } = this.props;
-
         return(
             <div className='shop-page'>
                 <Route exact path={`${match.path}`} component={CollectionsOverviewContainer} />

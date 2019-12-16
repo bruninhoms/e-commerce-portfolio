@@ -45,12 +45,12 @@ export const signUpStart = (emailPasswordAndDisplayName) => ({
     payload: emailPasswordAndDisplayName,
 });
 
-export const signUpSucess = user => ({
+export const signUpSucess = ({user, additionalData}) => ({
     type: UserActionTypes.SIGN_UP_SUCESS,
-    payload: user
+    payload: {user, additionalData}
 });
 
-export const signUpFailure = (error) => ({
+export const signUpFailure = error => ({
     type: UserActionTypes.SIGN_UP_FAILURE,
     payload: error
 });
