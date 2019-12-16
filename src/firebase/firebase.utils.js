@@ -71,16 +71,22 @@ export const convertCollectionsSnapshotToMap = (collections) => {
         } , {});
 };
 
+export const getCurrentUser = () => {
+        return new Promise((resolve, reject) => {
+                const unsubscribe = auth.onAuthStateChanged(userAuth => {
+                        unsubscribe();
+                        resolve(userAuth);
+                }, reject)
+        })
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const providerGoogle = new firebase.auth.GoogleAuthProvider();
-const providerFacebook = new firebase.auth.FacebookAuthProvider();
+export const providerGoogle = new firebase.auth.GoogleAuthProvider();
+export const providerFacebook = new firebase.auth.FacebookAuthProvider();
 
 providerGoogle.setCustomParameters({ prompt: 'select_account' });
 providerFacebook.setCustomParameters({ prompt: 'select_account' });
-
-export const signInWithGoogle = () => auth.signInWithPopup(providerGoogle);
-export const signInWithFacebook = () => auth.signInWithPopup(providerFacebook);
 
 export default firebase;

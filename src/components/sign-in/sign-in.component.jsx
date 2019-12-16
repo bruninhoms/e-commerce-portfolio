@@ -1,13 +1,12 @@
 import React from 'react';
-import { store } from 'react-notifications-component';
+import { connect } from 'react-redux';
 import { FacebookLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { BufferLoginButton  } from "react-social-login-buttons";
 
 import FormInput from '../form-input/form-input.component.jsx';
-import personalizedNotification from '../notifications/notifications.component.jsx';
 
-import { auth, signInWithGoogle, signInWithFacebook } from '../../firebase/firebase.utils.js';
+import { googleSignInStart, facebookSignInStart, emailSignInStart } from '../../redux/user/user.actions.js';
 
 import {
     SignInContainer,
@@ -26,36 +25,12 @@ class SignIn extends React.Component{
 
     handleSubmit = async event => {
         event.preventDefault();
-
+        const { emailSignInStart } = this.props;
         const { email, password } = this.state;
 
-        try{
-            await auth.signInWithEmailAndPassword(email, password);
-            this.setState({ email: '', password: ''});
-            store.addNotification({
-                content: personalizedNotification('Sucess !', 'Log in sucessful', 'sucess'),
-                container: 'bottom-left',
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                  duration: 1000,
-                }
-              })
-        }catch(error){
-            console.log(error);
-            store.addNotification({
-                content: personalizedNotification('Failed !', 'Check your credentials', 'error'),
-                container: 'bottom-left',
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                  duration: 1000,
-                }
-              })
-        }
-
-        this.setState({email: '', password: ''});
+        emailSignInStart(email, password);
     }
+    
 
     handleChange = event => {
         const { value, name } = event.target;
@@ -64,6 +39,7 @@ class SignIn extends React.Component{
     }
 
     render() {
+        const { googleSignInStart, facebookSignInStart } = this.props;
         return(
             <SignInContainer>
                 <h2>I already have an account</h2>
@@ -88,9 +64,9 @@ class SignIn extends React.Component{
                         required
                     />
                     <Buttons>
-                        <BufferLoginButton  type="submit" style={{fontFamily: 'Karla'}}> Sign in with Email </BufferLoginButton >
-                        <GoogleLoginButton onClick={signInWithGoogle} style={{fontFamily: 'Karla'}}> Sign in with Google </GoogleLoginButton>
-                        <FacebookLoginButton onClick={signInWithFacebook} style={{fontFamily: 'Karla' }}> Sign in with Facebook </FacebookLoginButton>
+                        <BufferLoginButton style={{fontFamily: 'Karla'}}> Sign in with Email </BufferLoginButton >
+                        <GoogleLoginButton type='button' onClick={googleSignInStart} style={{fontFamily: 'Karla'}}> Sign in with Google </GoogleLoginButton>
+                        <FacebookLoginButton type='button' onClick={facebookSignInStart} style={{fontFamily: 'Karla' }}> Sign in with Facebook </FacebookLoginButton>
                     </Buttons>
                     
                 </form>
@@ -99,4 +75,10 @@ class SignIn extends React.Component{
     }
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    facebookSignInStart: () => dispatch(facebookSignInStart()),
+    emailSignInStart: (email, password) => dispatch(emailSignInStart({ email, password })),
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);

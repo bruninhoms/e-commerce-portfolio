@@ -1,11 +1,12 @@
 import React from 'react';
-import { store } from 'react-notifications-component';
+import { connect } from 'react-redux';
 import { BufferLoginButton } from "react-social-login-buttons";
+import { store } from 'react-notifications-component';
 
 import FormInput from '../form-input/form-input.component.jsx';
-import personalizedNotification from '../notifications/notifications.component.jsx';
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js';
+import { signUpStart } from '../../redux/user/user.actions.js';
+import personalizedNotification from '../notifications/notifications.component.jsx';
 
 import {
     SignUpContainer,
@@ -13,8 +14,8 @@ import {
 } from './sign-up.styles.jsx';
 
 class SignUp extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state = {
             displayName: '',
@@ -28,50 +29,29 @@ class SignUp extends React.Component{
         event.preventDefault();
 
         const { displayName, email, password, confirmPassword } = this.state;
+        const { signUpStart } = this.props;
 
         if(password !== confirmPassword){
-            alert("Passwords don't match");
+            store.addNotification({
+                content: personalizedNotification('Error !', 'Passwords dont match!', 'error'),
+                container: 'bottom-left',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 1000,
+                }
+              })
             return;
-        }
-
-        try{
-            const { user } = await auth.createUserWithEmailAndPassword(
-                email,
-                password
-              );
-
-            await createUserProfileDocument(user, { displayName });
-
+        }else{
+        signUpStart(email, password, displayName);
             this.setState({
                 displayName: '',
                 email: '',
                 password: '',
                 confirmPassword: ''
             });
-
-            store.addNotification({
-                content: personalizedNotification('Sucess !', 'User created', 'sucess'),
-                container: 'bottom-left',
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                  duration: 1000,
-                }
-              })
-
-        }catch(error){
-            console.log(error);
-            store.addNotification({
-                content: personalizedNotification('Failed !', 'ERROR', 'error'),
-                container: 'bottom-left',
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                  duration: 1000,
-                }
-              })
         }
-    }
+    };
 
     handleChange = event => {
         const { name, value } = event.target;
@@ -118,11 +98,15 @@ class SignUp extends React.Component{
                         label='Confirm Password'
                         required
                      />
-                     <BufferLoginButton type='submit' style={{fontFamily: 'Karla' }}>Sign Up with Email</BufferLoginButton>
+                     <BufferLoginButton style={{fontFamily: 'Karla' }}>Sign Up with Email</BufferLoginButton>
                 </form>
             </SignUpContainer>
         )
     }
-}
+};
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+    signUpStart: (email, password, displayName) => dispatch(signUpStart({ email, password, displayName })),
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);
