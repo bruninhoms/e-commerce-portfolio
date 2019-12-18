@@ -4,6 +4,7 @@
 E-Commerce plataform for portfolio
 Using HOOKS
 Using Redux Sagas
+Using HOCs
 Using NodeJS server
 Using Express 
 Using Stripe payments
