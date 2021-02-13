@@ -22,10 +22,12 @@ export const CartItemDetails = styled.div`
 
 export const Name = styled.span`
     font-size: 14px;
+    color: black;
 `;
 
 export const Price = styled.span`
     font-size: 13px;
+    color: black;
 `;
 
 
