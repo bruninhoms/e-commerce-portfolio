@@ -8,7 +8,9 @@ export const MenuItemContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid black;
+  border: 1px solid rgba(211, 211, 211, .33);
+  border-opacity: 0.2;
+  border-radius: 5%
 	margin: 0 7.5px 15px;
 	overflow: hidden;
 	&:hover {

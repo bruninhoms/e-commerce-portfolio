@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-const subColor = 'grey';
-const mainColor = 'black';
+const subColor = 'black';
+const mainColor = 'lightgrey';
 
 const shrinkLabelStyles = css`
   top: -14px;
@@ -12,6 +12,7 @@ const shrinkLabelStyles = css`
 export const GroupContainer = styled.div`
   position: relative;
   margin: 45px 0;
+  border-radius: 50%;
   input[type='password'] {
     letter-spacing: 0.3em;
   }
@@ -19,7 +20,7 @@ export const GroupContainer = styled.div`
 
 export const FormInputContainer = styled.input`
   background: none;
-  background-color: white;
+  background-color: lightgray;
   color: ${subColor};
   font-size: 18px;
   padding: 10px 10px 10px 5px;

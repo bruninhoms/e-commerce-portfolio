@@ -1,23 +1,25 @@
 .info-container {
-    height: 90vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
-    .logo {
-        height: 100px;
-        width: 100px;
-        align-self: center;
+  .logo {
+    height: fit-content;
+    width: fit-content;
+    align-self: center;
+    margin-bottom: 50px;
+  }
+  .text {
+    text-align: center;
+
+    .little-text {
+      font-size: x-large;
+      color: lightgrey;
     }
-    .text{
-        align-self: center;
-        
-        .little-text{
-            font-size: x-large;
-        }
-        collections{
-            font-size: xx-large;
-        }
+    .collections {
+      font-size: xx-large;
     }
+  }
 }

@@ -15,9 +15,11 @@ import InfoPage from './pages/info/info.component.jsx';
 
 import Header from './components/header/header.component.jsx';
 import Footer from './components/footer/footer.component.jsx';
+import BackgroundVideo from './components/background-video/background-video.component';
 
 import { selectCurrentUser } from './redux/user/user.selectors.js';
 import { checkUserSession } from './redux/user/user.actions';
+
 
 const App = ({ checkUserSession, currentUser }) => {
 
@@ -27,6 +29,7 @@ const App = ({ checkUserSession, currentUser }) => {
 
     return (
       <div>
+        <BackgroundVideo></BackgroundVideo>
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />

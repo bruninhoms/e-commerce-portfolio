@@ -13,7 +13,6 @@ export const FooterContainer = styled.div`
 export const SocialContainer = styled.div`
     flex-direction: row;
     width: fit-content;
-    align-items: baseline;
     margin-left: 45%;
 
     &:first-child {

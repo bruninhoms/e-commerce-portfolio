@@ -11,7 +11,7 @@ export const Title = styled.h1`
     margin-bottom: 25px;
     cursor: pointer;
     width: fit-content;
-
+    color: lightgrey;
     &:hover {
         opacity: 0.5;
     }

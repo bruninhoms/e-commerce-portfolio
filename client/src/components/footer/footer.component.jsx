@@ -11,15 +11,15 @@ const Footer = () => (
     <FooterContainer>
         <SocialContainer>
             <img src={InstagramIcon} alt='InstagramLogo' />
-            <span>@Instagram Account</span>
+            <span>@crwn_clothing</span>
         </SocialContainer>
         <SocialContainer>
             <img src={FacebookIcon} alt='FacebookLogo' />
-            <span>@Facebook Account</span>
+            <span>@CRWN_CLOTHING</span>
         </SocialContainer>
         <SocialContainer>
             <img src={WhatsAppIcon} alt='WhatsAppLogo' />
-            <span>+55(99)9999-9999</span>
+            <span>+55 (XX)99936-7458</span>
         </SocialContainer>
     </FooterContainer>
 );
