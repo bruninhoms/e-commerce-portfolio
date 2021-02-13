@@ -52,6 +52,7 @@ export const Quantity = styled(TextContainer)`
 export const RemoveButton = styled.div`
     padding-left: 12px;
     cursor: pointer;
+    color: lightgrey;
     -webkit-touch-callout: none; 
     -webkit-user-select: none; 
      -khtml-user-select: none; 
