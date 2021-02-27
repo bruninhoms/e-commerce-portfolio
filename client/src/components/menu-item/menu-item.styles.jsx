@@ -29,6 +29,10 @@ export const MenuItemContainer = styled.div`
   &:last-child {
     margin-left: 7.5px;
   }
+
+  @media screen and (max-width: 800px) {
+    height: 240px;
+  }
 `;
 
 
@@ -62,5 +66,13 @@ export const Content = styled.div`
       span {
         font-weight: lighter;
         font-size: 16px;
+      }
+
+      @media screen and (max-width: 350px) {
+        padding: 0 5px;
+      }
+
+      @media screen and (max-width: 250px) {
+        padding: 0 0px;
       }
 `;

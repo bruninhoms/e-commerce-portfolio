@@ -8,12 +8,17 @@ export const FooterContainer = styled.div`
     margin-bottom: 5px;
     border-top: 1px solid rgba(128, 128, 128, 0.5);
     align-items: flex-start;
+
+    @media screen and (max-width: 800px) {
+        margin: 0;
+        width: auto;
+    }
 `;
 
 export const SocialContainer = styled.div`
     flex-direction: row;
+    margin: auto;
     width: fit-content;
-    margin-left: 45%;
 
     &:first-child {
         margin-top: 20px;
@@ -27,5 +32,8 @@ export const SocialContainer = styled.div`
     span{
         color: gray;
         font-size: medium;
+    }
+
+    @media screen and (max-width: 800px) {
     }
 `;

@@ -1,6 +1,7 @@
 {
   "name": "e-commerce-portfolio-server",
   "version": "1.0.0",
+  "license": "MIT",
   "engines": {
     "node": "14.13.1",
     "npm": "6.12.0"

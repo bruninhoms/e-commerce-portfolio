@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import ReactNotification from 'react-notifications-component';
 
-import './App.css';
 import 'react-notifications-component/dist/theme.css';
 
 import HomePage from './pages/homepage/homepage.component.jsx';
@@ -15,10 +14,14 @@ import InfoPage from './pages/info/info.component.jsx';
 
 import Header from './components/header/header.component.jsx';
 import Footer from './components/footer/footer.component.jsx';
-import BackgroundVideo from './components/background-video/background-video.component';
+
+import { GlobalStyle } from './global.styles.js'
 
 import { selectCurrentUser } from './redux/user/user.selectors.js';
 import { checkUserSession } from './redux/user/user.actions';
+
+import BackgroundVideo from './components/background-video/background-video.component';
+
 
 
 const App = ({ checkUserSession, currentUser }) => {
@@ -30,6 +33,7 @@ const App = ({ checkUserSession, currentUser }) => {
     return (
       <div>
         <BackgroundVideo></BackgroundVideo>
+        <GlobalStyle />
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
