@@ -31,7 +31,7 @@ export const MenuItemContainer = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    height: 240px;
+    height: 200px;
   }
 `;
 

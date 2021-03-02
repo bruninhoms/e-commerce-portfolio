@@ -22,4 +22,13 @@
       font-size: xx-large;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 90vw;
+    margin: 0px 2px;
+
+    .check-collections {
+      display: none;
+    }
+  }
 }
